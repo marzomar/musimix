@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<h1>
+    La page d'accueil...
+</h1>
+
+{% if user %}
+    <p>
+        Bienvenue {{ user.name }} !
+    </p>
+{% else %}
+    <p>
+        Bienvenue visiteur !
+    </p>
+{% endif %}
+
+<h1>
+    Liste des musiques
+</h1>
+
+<ul>
+{% for music in musics %}
+    <li>
+        <div>
+            <h2>{{ music.title }}</h2>
+            <p>
+                Artiste : {{ music.user.name }}
+            </p>
+            <p style="display: flex; gap: 2rem;">
+                {% for tag in music.tags %}
+                    <span style="background-color: black; color:white; padding: 2px;">{{ tag.name }}</span>
+                {% endfor %}
+            </p>
+        </div>
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock %}
